@@ -105,16 +105,18 @@ class THLMenuBar
   # #completed because the ScriptingBridge defines methods as
   # returning objects, and #completed returns a boolean directly.  I
   # believe it would need to be specially precompiled to be correctly
-  # recognized.
+  # recognized.  (ibid for 'canceled'.)
   def tasks
-    @hitlist.todayList.tasks.select {|task| !task.properties['completed'] }[0..@maximum_tasks]
+    @hitlist.todayList.tasks.select do |task|
+      !task.properties['completed'] && !task.properties['canceled']
+    end.sort_by(&@sort_by)[0..@maximum_tasks]
   end
 
   def render_tasks(new_tasks)
     @task_menu.each { |_, tmi| @menu.removeItem tmi.menu_item }
     @task_menu.clear
 
-    tasks.sort_by(&@sort_by).each do |task|
+    tasks.each do |task|
       item = createMenuItem(task.title, 'show:')
       item.setRepresentedObject(task.id)
 
