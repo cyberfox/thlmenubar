@@ -13,4 +13,5 @@ Motion::Project::App.setup do |app|
   app.name = 'THLHelper'
   app.frameworks = %w(AppKit Foundation CoreGraphics ScriptingBridge)
   app.info_plist['LSUIElement'] = true
+  app.copyright = "Copyright (c) #{Time.now.year} #{ENV['USER']}"
 end
