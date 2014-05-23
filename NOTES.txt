@@ -1,0 +1,11 @@
+An example task from THL's task list has properties like this:
+
+# => {"id"=>"5DA1DDC9924C800D", "actualTime"=>0.0, "dueDate"=>nil,
+#     "createdDate"=>2013-08-18 23:55:52 -0700,
+#     "url"=>"thehitlist:///5DA1DDC9924C800D", "priority"=>0,
+#     "archived"=>false, "estimatedTime"=>0.0, "notes"=>"",
+#     "objectClass"=>#<NSAppleEventDescriptor:0x7fba0b54e880>,
+#     "timingTask"=>"Choose and acquire new TV", "canceledDate"=>nil,
+#     "modifiedDate"=>2013-11-03 21:22:12 -0800, "canceled"=>false,
+#     "completed"=>false, "startDate"=>2013-11-15 00:00:00 -0800,
+#     "completedDate"=>nil, "repeating"=>false}
