@@ -132,6 +132,8 @@ class THLMenuBar
   def render_menubar(new_tasks)
     title, menubar_color = menubar_information(new_tasks.size)
     @status_item.setImage(NSImage.imageNamed("status_#{menubar_color}.png"))
-    @status_item.setAttributedTitle(title)
+    attr_title = NSAttributedString.alloc.initWithString(title, attributes: nil)
+    @status_item.setAttributedTitle(attr_title)
+    @status_item.length = NSStatusBar.systemStatusBar.thickness + attr_title.size.width + 2
   end
 end
