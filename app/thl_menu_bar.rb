@@ -107,9 +107,14 @@ class THLMenuBar
   # believe it would need to be specially precompiled to be correctly
   # recognized.  (ibid for 'canceled'.)
   def tasks
-    @hitlist.todayList.tasks.select do |task|
-      !task.properties['completed'] && !task.properties['canceled']
-    end.sort_by(&@sort_by)[0..@maximum_tasks]
+    show_tasks = @hitlist.todayList.tasks.select {|task| !task.properties['completed'] && !task.properties['canceled']}.sort_by(&@sort_by)
+
+    if show_tasks.length < @maximum_tasks
+      inbox = @hitlist.inbox.tasks.select {|task| !task.properties['completed'] && !task.properties['canceled']}.sort_by(&@sort_by)
+      show_tasks += inbox
+    end
+
+    show_tasks[0..@maximum_tasks]
   end
 
   def render_tasks(new_tasks)
@@ -126,7 +131,7 @@ class THLMenuBar
   end
 
   def menubar_information(count)
-    count > 0 ? [count.to_s, 'color'] : [nil, 'black']
+    count > 0 ? [count.to_s, 'color'] : ['', 'black']
   end
 
   def render_menubar(new_tasks)
